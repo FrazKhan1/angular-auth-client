@@ -8,6 +8,10 @@ interface User {
   email: string;
   password: string;
 }
+interface Credential {
+  email: string;
+  password: string;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -27,7 +31,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 
-  login(email: string, password: string) {
-    return this.http.post(`${this.apiUrl}/login`, { email, password });
+  login(user: Credential) {
+    return this.http.post(`${this.apiUrl}/login`, user);
   }
 }
