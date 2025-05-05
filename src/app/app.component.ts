@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angul
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterModule, RouterLink , RouterLinkActive],
+  imports: [RouterOutlet, RouterModule, RouterLink , RouterLinkActive  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
