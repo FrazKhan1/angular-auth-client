@@ -16,7 +16,7 @@ interface Credential {
   providedIn: 'root',
 })
 export class AuthService {
-  apiUrl = 'http://localhost:5000/api';
+  apiUrl = 'https://angular-auth-server.vercel.app/api';
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
