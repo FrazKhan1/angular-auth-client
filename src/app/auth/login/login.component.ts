@@ -56,7 +56,7 @@ export class LoginComponent {
         this.router.navigate(['/']);
       },
       error: (err) => {
-        this.toastr.success((err as any).message, 'Error');
+        this.toastr.error((err as any).error.message, 'Error');
         this.authService.setLoading(false);
       },
     });
