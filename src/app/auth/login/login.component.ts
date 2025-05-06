@@ -49,7 +49,6 @@ export class LoginComponent {
     this.authService.setLoading(true);
     this.authService.login(user).subscribe({
       next: (res) => {
-        console.log('Login successful', res);
         this.toastr.success((res as any).message, 'Success');
         this.userenc.saveUser((res as any).user);
         this.authService.setLoading(false);
@@ -64,6 +63,5 @@ export class LoginComponent {
 
   logUserdata() {
     const user = getUser().token;
-    console.log('User data:', user);
   }
 }

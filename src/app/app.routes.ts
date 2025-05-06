@@ -4,9 +4,11 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { authGuard } from './shared/auth.guard';
 import { loginGuard } from './shared/login.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent , canActivate: [loginGuard]},
   { path: 'signup', component: SignupComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
 ];

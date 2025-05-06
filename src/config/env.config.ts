@@ -32,7 +32,6 @@ export function getUser(): any | null {
     }
     return null;
   } catch (error) {
-    console.error('Error reading user from cookie', error);
     return null;
   }
 }

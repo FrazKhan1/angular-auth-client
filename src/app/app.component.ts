@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import {
   Router,
   RouterLink,
@@ -10,6 +10,7 @@ import {
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './auth/auth.service';
 import { UserEncService } from './auth/user-enc.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -25,22 +26,28 @@ import { UserEncService } from './auth/user-enc.service';
 })
 export class AppComponent {
   title = 'client';
-  username: string = '';
+  user: any = null;
 
-  constructor(private cookieService: CookieService, private router: Router , private userService: UserEncService) { }
-  
+  private userSubscription!: Subscription;
+
+  constructor(
+    private cookieService: CookieService,
+    private router: Router,
+    private userService: UserEncService,
+  ) {}
+
   ngOnInit() {
-    this.loadUser()
-
+    this.userSubscription = this.userService.user$.subscribe(user => {
+      this.user = user;
+    });
   }
 
-  loadUser() {
-    const user = this.userService.getUser();
-    if (user) {
-      this.username = user.firstName + ' ' + user.lastName;
+  ngOnDestroy() {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
     }
   }
-
+  
 
   isLoggedIn(): boolean {
     return this.cookieService.check('user');

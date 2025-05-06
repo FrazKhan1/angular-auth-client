@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-
+import { environment } from '../../environments/environment';
+const { apiUrl } = environment;
 interface User {
   firstName: string;
   lastName: string;
@@ -16,8 +17,6 @@ interface Credential {
   providedIn: 'root',
 })
 export class AuthService {
-  apiUrl = 'https://angular-auth-server.vercel.app/api';
-
   private loadingSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
 
@@ -28,10 +27,14 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   signUp(user: User) {
-    return this.http.post(`${this.apiUrl}/register`, user);
+    return this.http.post(`${apiUrl}/register`, user);
   }
 
   login(user: Credential) {
-    return this.http.post(`${this.apiUrl}/login`, user);
+    return this.http.post(`${apiUrl}/login`, user);
+  }
+
+  update(user: any) {
+    return this.http.put(`${apiUrl}/profile`, user);
   }
 }
