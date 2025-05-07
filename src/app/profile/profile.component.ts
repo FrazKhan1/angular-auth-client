@@ -34,7 +34,7 @@ export class ProfileComponent {
       if (user) {
         this.profile = { ...user };
         if (user.profileImage) {
-          this.imageUrl = `http://localhost:5000/uploads/${user.profileImage}`;
+          this.imageUrl = user.profileImage;
         }
       }
     });

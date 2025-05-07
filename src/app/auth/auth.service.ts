@@ -9,6 +9,12 @@ interface User {
   email: string;
   password: string;
 }
+interface Update {
+  firstName: string;
+  lastName: string;
+  email: string;
+  profileImage: string;
+}
 interface Credential {
   email: string;
   password: string;
