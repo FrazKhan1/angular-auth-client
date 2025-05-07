@@ -7,15 +7,20 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
+import { authInterceptor } from './auth/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     provideAnimations(),
     provideToastr({
       timeOut: 3000,
@@ -24,6 +29,6 @@ export const appConfig: ApplicationConfig = {
       closeButton: true,
       progressBar: true,
       progressAnimation: 'increasing',
-    })
+    }),
   ],
 };
