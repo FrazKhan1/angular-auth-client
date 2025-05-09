@@ -5,10 +5,12 @@ import { HomeComponent } from './home/home.component';
 import { authGuard } from './shared/auth.guard';
 import { loginGuard } from './shared/login.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent , canActivate: [loginGuard]},
   { path: 'signup', component: SignupComponent },
+  { path: 'verify-email', component: VerifyEmailComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
 ];

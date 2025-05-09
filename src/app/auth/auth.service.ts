@@ -43,4 +43,8 @@ export class AuthService {
   update(user: any) {
     return this.http.put(`${apiUrl}/profile`, user);
   }
+
+  verifyEmail(token: string) {
+    return this.http.get(`${apiUrl}/verify-email?token=${token}`);
+  }
 }
