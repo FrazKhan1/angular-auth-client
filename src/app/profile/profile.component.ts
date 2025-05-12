@@ -91,7 +91,7 @@ export class ProfileComponent {
         this.authService.setLoading(false);
       },
       error: (err) => {
-        this.toastr.error(err.error.message, 'Error');
+        this.toastr.error(err.error.error, 'Error');
         this.authService.setLoading(false);
       },
     });
