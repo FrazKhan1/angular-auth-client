@@ -24,6 +24,7 @@ export class SignupComponent {
   email: string = '';
   password: string = '';
   isLoading: boolean = false;
+  isUserRegisterd: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -54,7 +55,23 @@ export class SignupComponent {
       next: (res) => {
         this.toastr.success((res as any).message, 'Success');
         this.authService.setLoading(false);
-        this.router.navigate(['/login']);
+        if ((res as any).success) {
+          this.isUserRegisterd = true;
+        }
+      },
+      error: (err) => {
+        this.toastr.error((err as any).error.message, 'Error');
+        this.authService.setLoading(false);
+      },
+    });
+  }
+
+  resendVerificationEmail() {
+    this.authService.setLoading(true);
+    this.authService.resendVerificationLink(this.email).subscribe({
+      next: (res) => {
+        this.toastr.success((res as any).message, 'Success');
+        this.authService.setLoading(false);
       },
       error: (err) => {
         this.toastr.error((err as any).error.message, 'Error');

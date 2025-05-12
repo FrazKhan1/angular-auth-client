@@ -47,4 +47,8 @@ export class AuthService {
   verifyEmail(token: string) {
     return this.http.get(`${apiUrl}/verify-email?token=${token}`);
   }
+
+  resendVerificationLink(email: string) {
+    return this.http.post(`${apiUrl}/resend-link`, {email})
+  }
 }
